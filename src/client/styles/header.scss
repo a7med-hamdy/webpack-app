@@ -1,5 +1,27 @@
-header {
+$height: 75px;
+
+.header {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 40px;
+    align-items: center;
+    justify-content: center;
+    height : $height;
+    margin-bottom: 40px;
+    background-color:seagreen;
+    border : 3px solid greenyellow;
+    div{
+        width: 200px;
+    }
+}
+.title{
+    height : $height;
+    text-align: center;
+    line-height: 70px;
+    font-size: 30px;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    &:hover{
+        color:darkslategrey;
+        border: 0px;
+        font-weight: bold;
+    }
 }
