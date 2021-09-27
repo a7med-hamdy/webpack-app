@@ -1,3 +1,4 @@
+
 main{
     display: flex;
     flex-direction: column;
@@ -5,7 +6,7 @@ main{
     justify-content: flex-start;
     align-items: center;
     form {
-        border: 1px solid #545454;
+        border : 1px solid #545454;
         border-radius: 3px;
         padding: 20px;
         height : 100%;
@@ -14,6 +15,11 @@ main{
     textarea{
         width: 100%;
         height: 70%;
+        &:focus{
+            outline: none;
+            box-shadow: 10px 7.5px 15px yellow, -10px 7.5px 15px lime, -10px -7.5px 15px blue, 10px -7.5px 15px red;
+            transition: all 0.4s ease-out;
+        }
     }
     input {
         position: absolute;
@@ -43,8 +49,14 @@ main{
         height: 3px;
         width : 100%;
     }
+    #text{
+        width: 97%;
+        font-size: 20px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: darkgreen;
+        line-height: 30px;
+    }
     .features{
-        width: 100%;
         &::before{
             content : "Features";
             font-size: 15px;

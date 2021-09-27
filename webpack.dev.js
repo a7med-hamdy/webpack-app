@@ -23,7 +23,7 @@ module.exports = {
             {
                 test : /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-            }
+            },
         ]
     },
     plugins: [
@@ -41,5 +41,6 @@ module.exports = {
             protectWebpackAssets: false
         }),
         new Dotenv({path : './info.env'}),
+        
     ]
 }

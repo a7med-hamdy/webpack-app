@@ -8,8 +8,6 @@ import './styles/header.scss';
 import './styles/resets.scss';
 
 
-alert("I EXIST")
-
 export{
     checker,
     handleSubmit,

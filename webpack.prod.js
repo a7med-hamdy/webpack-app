@@ -1,16 +1,45 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const Dotenv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { mainModule } = require('process');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
+    output: {
+        path : __dirname + '/dist',
+        filename : 'main.js',
+        libraryTarget: 'var',
+        library: 'Client'
+    },
+    optimization: {
+        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test : /\.scss$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            },
+            {
+                test : /\.(tff|woff|woff2)$/,
+                exclude : /node_modules/,
+                loader : 'url-loader',
+                options :{
+                    publicPath : './fonts/',
+                    name : './dist/name].[ext]',
+                    limit : 1000,
+                }
             }
         ]
     },
@@ -18,6 +47,9 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
-        })
+        }),
+        new Dotenv({path : './info.env'}),
+        new MiniCssExtractPlugin({ filename: "[name].css" }),
+        new WorkboxPlugin.GenerateSW(),
     ]
 }
